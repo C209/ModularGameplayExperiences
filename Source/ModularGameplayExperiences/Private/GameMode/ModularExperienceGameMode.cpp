@@ -311,7 +311,7 @@ bool AModularExperienceGameMode::IsExperienceLoaded() const
 	return ExperienceComponent->IsExperienceLoaded();
 }
 
-void AModularExperienceGameMode::OnMatchAssignmentGiven(FPrimaryAssetId ExperienceId, const FString& ExperienceIdSource)
+void AModularExperienceGameMode::OnMatchAssignmentGiven(const FPrimaryAssetId& ExperienceId, const FString& ExperienceIdSource)
 {
 	if (ExperienceId.IsValid())
 	{
@@ -387,8 +387,7 @@ void AModularExperienceGameMode::HandleMatchAssignmentIfNotExpectingOne()
 	}
 
 	UModularAssetManager& AssetManager = UModularAssetManager::Get();
-	FAssetData Dummy;
-	if (ExperienceId.IsValid() && !AssetManager.GetPrimaryAssetData(ExperienceId, /*out*/ Dummy))
+	if (FAssetData Dummy; ExperienceId.IsValid() && !AssetManager.GetPrimaryAssetData(ExperienceId, /*out*/ Dummy))
 	{
 		UE_LOG(LogModularGameplayExperiences, Error,
 			TEXT("EXPERIENCE: Wanted to use %s but couldn't find it, falling back to the default)"),
@@ -406,7 +405,7 @@ void AModularExperienceGameMode::HandleMatchAssignmentIfNotExpectingOne()
 		}
 
 		//@TODO: Pull this from a config setting or something
-		ExperienceId = FPrimaryAssetId(FPrimaryAssetType("ModularExperienceDefinition"), FName("B_ModularDefaultExperience"));
+		ExperienceId = FPrimaryAssetId(FPrimaryAssetType("ModularExperienceDefinition"), FName("ED_DefaultExperience"));
 		ExperienceIdSource = TEXT("Default");
 	}
 

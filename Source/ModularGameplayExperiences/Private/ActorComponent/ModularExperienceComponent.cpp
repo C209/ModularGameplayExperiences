@@ -11,6 +11,7 @@
 #include "TimerManager.h"
 #include "DataAsset/ModularAssetManager.h"
 #include "GameMode/ModularExperienceManager.h"
+#include "GameMode/ModularWorldSettings.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(ModularExperienceComponent)
 
@@ -20,7 +21,8 @@
 //@TODO: Support deactivating an experience and do the unloading actions
 //@TODO: Think about what deactivation/cleanup means for preloaded assets
 //@TODO: Handle deactivating game features, right now we 'leak' them enabled
-// (for a client moving from experience to experience we actually want to diff the requirements and only unload some, not unload everything for them to just be immediately reloaded)
+// (for a client moving from experience to experience we actually want to diff the requirements and only unload some,
+// not unload everything for them to just be immediately reloaded)
 //@TODO: Handle both built-in and URL-based plugins (search for colon?)
 
 namespace ModularGameplayExperiencesConsoleVariables
@@ -51,8 +53,13 @@ UModularExperienceComponent::UModularExperienceComponent(const FObjectInitialize
 	SetIsReplicatedByDefault(true);
 }
 
-void UModularExperienceComponent::SetCurrentExperience(FPrimaryAssetId ExperienceId)
+void UModularExperienceComponent::SetCurrentExperience(const FPrimaryAssetId& ExperienceId)
 {
+	if (!ExperienceId.IsValid())
+	{
+		return;
+	}
+
 	const UModularAssetManager& AssetManager = UModularAssetManager::Get();
 	const FSoftObjectPath AssetPath = AssetManager.GetPrimaryAssetPath(ExperienceId);
 	const TSubclassOf<UModularExperienceDefinition> AssetClass = Cast<UClass>(AssetPath.TryLoad());

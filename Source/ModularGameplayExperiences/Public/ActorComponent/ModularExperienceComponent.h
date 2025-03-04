@@ -29,7 +29,7 @@ enum class EModularExperienceLoadState
  * Intended for GameState actors, but can be used anywhere.
  */
 UCLASS()
-class UModularExperienceComponent final : public UGameStateComponent, public ILoadingProcessInterface
+class MODULARGAMEPLAYEXPERIENCES_API UModularExperienceComponent final : public UGameStateComponent, public ILoadingProcessInterface
 {
 	GENERATED_BODY()
 
@@ -45,7 +45,7 @@ public:
 	//~End of ILoadingProcessInterface
 
 	// Tries to set the current experience, either a UI or gameplay one
-	void SetCurrentExperience(FPrimaryAssetId ExperienceId);
+	void SetCurrentExperience(const FPrimaryAssetId& ExperienceId);
 
 	// Ensures the delegate is called once the experience has been loaded,
 	// before others are called.

@@ -77,12 +77,14 @@ protected:
 	UPROPERTY(ReplicatedUsing=OnRep_PawnData)
 	TObjectPtr<const UModularPawnData> PawnData;
 
+	UPROPERTY(Replicated)
+    	FGameplayTagStackContainer StatTags;
+
 private:
 	UPROPERTY(Replicated)
 	EModularPlayerConnectionType MyPlayerConnectionType;
 
-	UPROPERTY(Replicated)
-	FGameplayTagStackContainer StatTags;
+	
 
 	UPROPERTY(Replicated)
 	FRotator ReplicatedViewRotation;

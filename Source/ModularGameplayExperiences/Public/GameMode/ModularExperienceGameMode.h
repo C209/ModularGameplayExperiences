@@ -102,7 +102,7 @@ protected:
 
 	void OnExperienceLoaded(const UModularExperienceDefinition* CurrentExperience);
 	bool IsExperienceLoaded() const;
-	void OnMatchAssignmentGiven(FPrimaryAssetId ExperienceId, const FString& ExperienceIdSource);
+	void OnMatchAssignmentGiven(const FPrimaryAssetId& ExperienceId, const FString& ExperienceIdSource);
 	void HandleMatchAssignmentIfNotExpectingOne();
 	// @todo Encapsulate this in multiple hosting options.
 	bool TryDedicatedServerLogin();

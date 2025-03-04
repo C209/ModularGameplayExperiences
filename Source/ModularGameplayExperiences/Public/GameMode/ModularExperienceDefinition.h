@@ -17,8 +17,6 @@ class MODULARGAMEPLAYEXPERIENCES_API UModularExperienceDefinition : public UPrim
 
 public:
 	UModularExperienceDefinition();
-	virtual EDataValidationResult IsDataValid(FDataValidationContext& Context) const override;
-	virtual void UpdateAssetBundleData() override;
 
 	// The default pawn class to spawn for players.
 	//@TODO: Make soft?
@@ -35,4 +33,22 @@ public:
 	// List of Game Feature Plugins this experience wants to have active.
 	UPROPERTY(EditDefaultsOnly, Category="Gameplay")
 	TArray<FString> GameFeaturesToEnable;
+
+	/**
+	 * @implements UPrimaryDataAsset
+	 * @{
+	 */
+#if WITH_EDITORONLY_DATA
+	virtual void UpdateAssetBundleData() override;
+#endif
+	/** @} */
+
+	/**
+	 * @implements UObject
+	 * @{
+	 */
+#if WITH_EDITOR
+	virtual EDataValidationResult IsDataValid(class FDataValidationContext& Context) const override;
+#endif
+	/** @} */
 };
