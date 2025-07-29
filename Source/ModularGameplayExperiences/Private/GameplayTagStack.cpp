@@ -79,6 +79,14 @@ void FGameplayTagStackContainer::RemoveStack(FGameplayTag Tag, int32 StackCount)
 	}
 }
 
+void FGameplayTagStackContainer::GetGameplayTags(FGameplayTagContainer& TagContainer) const
+{
+	for (const FGameplayTagStack& Stack : Stacks)
+	{
+		TagContainer.AddTag(Stack.Tag);
+	}
+}
+
 void FGameplayTagStackContainer::PreReplicatedRemove(const TArrayView<int32> RemovedIndices, int32 FinalSize)
 {
 	for (const int32 Index : RemovedIndices)
