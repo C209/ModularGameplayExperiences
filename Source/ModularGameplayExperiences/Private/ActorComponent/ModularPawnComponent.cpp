@@ -43,9 +43,9 @@ void UModularPawnComponent::OnRegister()
 	ensureAlwaysMsgf((Pawn != nullptr), TEXT("ModularPawnComponent on [%s] can only be added to Pawn actors."),
 		*GetNameSafe(GetOwner()));
 
-	TArray<UActorComponent*> PawnExtensionComponents;
-	Pawn->GetComponents(UModularPawnComponent::StaticClass(), PawnExtensionComponents);
-	ensureAlwaysMsgf((PawnExtensionComponents.Num() == 1), TEXT("Only one ModularPawnComponent should exist on [%s]."),
+	TArray<UActorComponent*> ModularPawnComponents;
+	Pawn->GetComponents(UModularPawnComponent::GetClass(), ModularPawnComponents);
+	ensureAlwaysMsgf((ModularPawnComponents.Num() == 1), TEXT("Only one ModularPawnComponent should exist on [%s]."),
 		*GetNameSafe(GetOwner()));
 
 	// Register with the init state system early, this will only work if this is a game world.

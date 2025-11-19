@@ -10,14 +10,12 @@ public class ModularGameplayExperiences : ModuleRules
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				// ... add public include paths required here ...
 			}
 			);
 				
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				// ... add other private include paths required here ...
 			}
 			);
 			
@@ -31,11 +29,12 @@ public class ModularGameplayExperiences : ModuleRules
 				"CommonUser",
 				"Core",
 				"GameFeatures",
+				"GameplayTags",
 				"ModularGameplay",
 				"ModularGameplayActors",
 				"ModularGameplayData",
 				"NetCore",
-				"UMG",
+				"UMG"
 			}
 			);
 			
@@ -47,18 +46,17 @@ public class ModularGameplayExperiences : ModuleRules
 				"Engine",
 				"EngineSettings",
 				"EnhancedInput",
+				"GameplayAbilities",
 				"GameplayTags",
 				"GameplayMessageRuntime",
 				"Slate",
-				"SlateCore",
+				"SlateCore"
 			}
 			);
-		
-		
+
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{
-				// ... add any modules that your module loads dynamically here ...
 			}
 			);
 	}
