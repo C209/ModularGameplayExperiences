@@ -14,11 +14,14 @@
 #include "Kismet/GameplayStatics.h"
 #include "Player/ModularExperiencePlayerState.h"
 #include "CommonUserSubsystem.h"
+#include "GameMode/ModularExperienceGameState.h"
 #include "GameMode/ModularUserFacingExperienceDefinition.h"
 
 
 AModularExperienceGameMode::AModularExperienceGameMode(const FObjectInitializer& ObjectInitializer)
 {
+	// Setup default GameState
+	GameStateClass = AModularExperienceGameState::StaticClass();
 }
 
 const UModularPawnData* AModularExperienceGameMode::GetPawnDataForController(const AController* InController) const
